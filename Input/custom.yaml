@@ -1,0 +1,5 @@
+names:
+  0: Apple
+test: null
+train: /content/Train/images/train/
+val: /content/Train/images/val/

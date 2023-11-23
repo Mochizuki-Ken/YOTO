@@ -1,0 +1,42 @@
+YOTO
+
+Function
+
+Input Objects
+
+Object TYPE Optional *
+( Animals / Building / Frult / (Sign/Logo) / Face / Human Position / )
+
+HUMAN Label 
+Toon Each Object Image
+
+Costom Interference Objects *
+Default Interference Objects *
+Objects on Object *
+
+Custom BackGround 
+Default BackGround
+AI BackGround
+Toon BackGround
+Train
+Output
+
+Setting Option
+
+
+Object name
+Train Time
+Position / size / light  Accuracy
+Detact Speed
+
+Flow \/
+
+INPUT VIDEO(S)   *can more than one object(Optional)
+Label Them on Video (AUTO or HUMAN Label)
+
+Remove all background 
+
+Each class's Object Add new BackGround (can be custom/toon/AI Gen Background )
+in different pos size light (Default Random)
+
+Train
