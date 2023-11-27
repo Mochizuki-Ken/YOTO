@@ -5,10 +5,8 @@ import os
 import shutil
 import yaml
 
-Input_Path = "./Input"
-ObjectImage = "./ObjectImage"
-ProcessedImage = "./ProcessedImage"
-Output = "./Output"
+Target_ObjectImage_Path = "ObjectImages/Target_Objects"
+Interference_ObjectImage_Path = "ObjectImages/Interference_Objects"
 PROJECT_PATH = os.path.dirname(os.path.abspath(os.getcwd()))+"/YOTO"
 
 def FinalDelete():
@@ -17,22 +15,37 @@ def FinalDelete():
     except:
         pass
     try:
-        VideoList = os.listdir(f"{PROJECT_PATH}/Input/Videos")
+        VideoList = os.listdir(f"{PROJECT_PATH}/Input/Target_Objects_Videos")
         for video in VideoList:
-            os.remove(f"{PROJECT_PATH}/Input/Videos/{video}")
+            os.remove(f"{PROJECT_PATH}/Input/Target_Objects_Videos/{video}")
     except:
         pass
+
     try:
-        InputImagesList = os.listdir(f"{PROJECT_PATH}/Input/Images")
-        for image in InputImagesList:
-            shutil.rmtree(f"{PROJECT_PATH}/Input/Images/{image}")
+        TargetInputImagesList = os.listdir(f"{PROJECT_PATH}/Input/Target_Objects_Images")
+        for image in TargetInputImagesList:
+            shutil.rmtree(f"{PROJECT_PATH}/Input/Target_Objects_Images/{image}")
     except:
         pass
     
     try:
-        ObjectImagesList = os.listdir(f"{PROJECT_PATH}/ObjectImage")
-        for image in ObjectImagesList:
-            shutil.rmtree(f"{PROJECT_PATH}/ObjectImage/{image}")
+        TargetObjectImagesList = os.listdir(f"{PROJECT_PATH}/{Target_ObjectImage_Path}")
+        for image in TargetObjectImagesList:
+            shutil.rmtree(f"{PROJECT_PATH}/{Target_ObjectImage_Path}/{image}")
+    except:
+        pass
+
+    try:
+        InterferenceInputImagesList = os.listdir(f"{PROJECT_PATH}/Input/Interference_Objects_Images")
+        for image in InterferenceInputImagesList:
+            shutil.rmtree(f"{PROJECT_PATH}/Input/Interference_Objects_Images/{image}")
+    except:
+        pass
+    
+    try:
+        InterferenceObjectImagesList = os.listdir(f"{PROJECT_PATH}/{Interference_ObjectImage_Path}")
+        for image in InterferenceObjectImagesList:
+            shutil.rmtree(f"{PROJECT_PATH}/{Interference_ObjectImage_Path}/{image}")
     except:
         pass
     
@@ -71,7 +84,7 @@ def EditYaml(Target_Objects):
         }
         yaml.dump(data, f)
 
-def Train(Target_Objects:list,Target_Objects_Area:list[list[dict]],train_epochs:int,position_accuracy:int,light_accuracy:int,size_accuracy:int,background,background_light,Terminal_Text):
+def Train(Target_Objects:list,Target_Objects_Area:list[list[dict]],position_accuracy:int,light_accuracy:int,size_accuracy:int,background,background_light,Terminal_Text,mode):
     # FinalDelete()
     EditYaml(Target_Objects=Target_Objects)
     if background!="AI":

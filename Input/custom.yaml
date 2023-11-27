@@ -1,5 +1,5 @@
 names:
-  0: Apple
+  0: apple
 test: null
 train: /content/Train/images/train/
 val: /content/Train/images/val/

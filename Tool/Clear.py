@@ -1,6 +1,8 @@
 import shutil
 import os
 
+Target_ObjectImage_Path = "ObjectImages/Target_Objects"
+Interference_ObjectImage_Path = "ObjectImages/Interference_Objects"
 PROJECT_PATH = os.path.dirname(os.path.abspath(os.getcwd()))+"/YOTO"
 
 def FinalDelete():
@@ -10,23 +12,44 @@ def FinalDelete():
         None
 
     try:
-        VideoList = os.listdir(f"{PROJECT_PATH}/Input/Videos")
-        for video in VideoList:
-            os.remove(f"{PROJECT_PATH}/Input/Videos/{video}")
+        TargetVideoList = os.listdir(f"{PROJECT_PATH}/Input/Target_Objects_Videos")
+        for video in TargetVideoList:
+            os.remove(f"{PROJECT_PATH}/Input/Target_Objects_Videos/{video}")
     except:
         None
 
     try:
-        InputImagesList = os.listdir(f"{PROJECT_PATH}/Input/Images")
-        for image in InputImagesList:
-            shutil.rmtree(f"{PROJECT_PATH}/Input/Images/{image}")
+        InterferenceVideoList = os.listdir(f"{PROJECT_PATH}/Input/Interference_Objects_Videos")
+        for video in InterferenceVideoList:
+            shutil.rmtree(f"{PROJECT_PATH}/Input/Interference_Objects_Videos/{video}")
+    except:
+        None
+
+    try:
+        TargetInputImagesList = os.listdir(f"{PROJECT_PATH}/Input/Target_Objects_Images")
+        for image in TargetInputImagesList:
+            shutil.rmtree(f"{PROJECT_PATH}/Input/Target_Objects_Images/{image}")
     except:
         None
     
     try:
-        ObjectImagesList = os.listdir(f"{PROJECT_PATH}/ObjectImage")
-        for image in ObjectImagesList:
-            shutil.rmtree(f"{PROJECT_PATH}/ObjectImage/{image}")
+        TargetObjectImagesList = os.listdir(f"{PROJECT_PATH}/{Target_ObjectImage_Path}")
+        for image in TargetObjectImagesList:
+            shutil.rmtree(f"{PROJECT_PATH}/{Target_ObjectImage_Path}/{image}")
+    except:
+        None
+
+    try:
+        InterferenceInputImagesList = os.listdir(f"{PROJECT_PATH}/Input/Interference_Objects_Images")
+        for image in InterferenceInputImagesList:
+            shutil.rmtree(f"{PROJECT_PATH}/Input/Interference_Objects_Images/{image}")
+    except:
+        None
+    
+    try:
+        InterferenceObjectImagesList = os.listdir(f"{PROJECT_PATH}/{Interference_ObjectImage_Path}")
+        for image in InterferenceObjectImagesList:
+            shutil.rmtree(f"{PROJECT_PATH}/{Interference_ObjectImage_Path}/{image}")
     except:
         None
     

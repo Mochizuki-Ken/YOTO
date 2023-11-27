@@ -181,3 +181,66 @@ cv2.imshow("gammam image 1", adjust_gamma(i,4))
 
 cv2.waitKey(0)
 cv2.destroyAllWindows()
+
+
+def Label_Object_Each_Object(self,index,name,frame):
+        self.drawing = False # true if mouse is pressed
+        self.ix,self.iy = -1,-1
+        self.end = False
+        self.New_Frame = frame.copy()
+        self.Size={}
+        # mouse callback function
+        def draw_rectanlge(event, x, y, flags, param):
+            """ Draw rectangle on mouse click and drag """
+            if event == cv2.EVENT_LBUTTONDOWN:
+                self.New_Frame = frame.copy()
+                self.drawing = True
+                self.ix,self.iy = x,y
+            elif event == cv2.EVENT_MOUSEMOVE:
+                if self.drawing == True:
+                    cv2.rectangle(self.New_Frame, (self.ix, self.iy), (x, y), (250,250, 250,0.2), -1)
+            elif event == cv2.EVENT_LBUTTONUP:
+                print(self.ix,self.iy,x,y)
+                self.Size={"Top":self.iy,"Left":self.ix,"Bottom":y,"Right":x}
+                self.drawing = False
+
+        cv2.namedWindow(name) 
+        cv2.setMouseCallback(name,draw_rectanlge)
+        cv2.imshow(name,self.New_Frame)
+
+        while(self.end==False):
+            cv2.imshow(name,self.New_Frame)
+            if cv2.waitKey(1) & 0xFF == ord('e'):
+                self.FRAMES.append(self.Size)
+                self.New_Frame=None
+                break      
+                
+        cv2.destroyAllWindows()
+
+        return 1
+
+def Label_Object(self,index,name,video):
+        c=1
+
+        Video = cv2.VideoCapture(video)
+
+        RATE = 101-int(self.OPTION_LIST["postition accuracy"].get())
+
+        while Video.isOpened() :
+            ret , frame = Video.read()
+            if ret == True and c%RATE==0:
+                self.Label_Object_Each_Object(index=index,name=f'{name}{c}',frame=frame)
+            elif ret!=True:
+                break
+            c+=1
+
+        if(len(self.TARGET_OBJECTS_LABEL)>=index):
+            self.TARGET_OBJECTS_LABEL[index]=self.FRAMES
+        else:
+            self.TARGET_OBJECTS_LABEL.append(self.FRAMES)
+        
+        Video.release()
+        
+        self.FRAMES=[]
+
+        return 1

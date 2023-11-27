@@ -10,6 +10,8 @@ Input_Path="./Input"
 ObjectImage_Path="./ObjectImage"
 ProcessedImage_Path="./ProcessedImage"
 Output_Path="./Output"
+Target_ObjectImage_Path = "ObjectImages/Target_Objects"
+Interference_ObjectImage_Path = "ObjectImages/Interference_Objects"
 PROJECT_PATH = os.path.dirname(os.path.abspath(os.getcwd()))+"/YOTO"
 #################################
 
@@ -253,20 +255,20 @@ def AutoBackGround(ObjectFolderList,light_accuracy,size_accuracy,background_ligh
     # ObjectFolderList:list = os.listdir(f"{PROJECT_PATH}/ObjectFolder/")
     for i,ObjectFolder in enumerate(ObjectFolderList):
 
-        FilesList:list = os.listdir(f"{PROJECT_PATH}/ObjectImage/{ObjectFolder}")
+        FilesList:list = os.listdir(f"{PROJECT_PATH}/{Target_ObjectImage_Path}/{ObjectFolder}")
 
         for File in FilesList:
             # print(f"{PROJECT_PATH}/ObjectFolder/{ObjectFolder}/{File}")
-            NewBackGround_Size(TYPE="train",ObjectID=i,File_Path=f"{PROJECT_PATH}/ObjectImage/{ObjectFolder}/{File}",light_accuracy=light_accuracy,size_accuracy=size_accuracy,background_light=background_light,Terminal_Text=Terminal_Text,background=background)
+            NewBackGround_Size(TYPE="train",ObjectID=i,File_Path=f"{PROJECT_PATH}/{Target_ObjectImage_Path}/{ObjectFolder}/{File}",light_accuracy=light_accuracy,size_accuracy=size_accuracy,background_light=background_light,Terminal_Text=Terminal_Text,background=background)
     count=1
 
     for i,ObjectFolder in enumerate(ObjectFolderList):
 
-        FilesList:list = os.listdir(f"{PROJECT_PATH}/ObjectImage/{ObjectFolder}")
+        FilesList:list = os.listdir(f"{PROJECT_PATH}/{Target_ObjectImage_Path}/{ObjectFolder}")
 
         for File in FilesList:
             # print(f"{PROJECT_PATH}/ObjectFolder/{ObjectFolder}/{File}")
-            NewBackGround_Size(TYPE="val",ObjectID=i,File_Path=f"{PROJECT_PATH}/ObjectImage/{ObjectFolder}/{File}",light_accuracy=light_accuracy,size_accuracy=size_accuracy,background_light=background_light,Terminal_Text=Terminal_Text,background=background)
+            NewBackGround_Size(TYPE="val",ObjectID=i,File_Path=f"{PROJECT_PATH}/{Target_ObjectImage_Path}/{ObjectFolder}/{File}",light_accuracy=light_accuracy,size_accuracy=size_accuracy,background_light=background_light,Terminal_Text=Terminal_Text,background=background)
             
 
         pass

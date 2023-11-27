@@ -45,7 +45,7 @@ class YOTO:
     InterferenceObjects_Type_Str_Var = None
     Auto_Interference_Hepler_State_Str_Var = None
     Currect_Object_Str_Var = None
-    DataSet_Size_Mode_Str_Var = None
+    Objects_Zip_Mode_Str_Var = None
 
     Current_Target_Object_Index = 0
     Current_Target_Object_Change_State = True
@@ -120,10 +120,12 @@ class YOTO:
     ##### Button Functions #####
 
     def DataSet_Size_Mode(self):
-        if(self.DataSet_Size_Mode_Str_Var.get() == "No-Limit"):
-            self.DataSet_Size_Mode_Str_Var.set("Limited")
-        elif(self.DataSet_Size_Mode_Str_Var.get() ==  'Limited'):
-            self.DataSet_Size_Mode_Str_Var.set("No-Limit")
+        if(self.Objects_Zip_Mode_Str_Var.get() == "Auto"):
+            self.Objects_Zip_Mode_Str_Var.set("Zip")
+        elif(self.Objects_Zip_Mode_Str_Var.get() ==  'Zip'):
+            self.Objects_Zip_Mode_Str_Var.set("No Zip")
+        else:
+            self.Objects_Zip_Mode_Str_Var.set("Auto")
     def Add_Custom_Background(self):
         FolderPath = filedialog.askdirectory()
         # os.mkdir(PROJECT_PATH+f"/Input/BackGroundSets/{self.TARGET_OBJECTS_LIST[self.Current_Target_Object_Index][0]}")
@@ -275,6 +277,12 @@ class YOTO:
         for i in self.TARGET_OBJECTS_LIST:
             NEW_TARGETS_LIST.append(i[0])
             print(i[0])
+        NEW_INTERFERENCE_OBJECTS_LIST = []
+        for i in self.INTERFERENCE_OBJECTS_LIST:
+            arr = []
+            for j in i:
+                arr.append(j[0])
+            NEW_INTERFERENCE_OBJECTS_LIST.append(arr)
         print("------------------------")
         print("TARGET_OBJECTS_LIST")
         print(NEW_TARGETS_LIST)
@@ -701,7 +709,7 @@ class YOTO:
         DataSet_Size_Mode_Text.pack()
         DataSet_Size_Mode_Text.place(x=self.Third_Column_X-20,y=340)
 
-        DataSet_Size_Mode_Btn = tk.Button(self.Main,textvariable=self.DataSet_Size_Mode_Str_Var,font=("Arial", 15),command=self.DataSet_Size_Mode)
+        DataSet_Size_Mode_Btn = tk.Button(self.Main,textvariable=self.Objects_Zip_Mode_Str_Var,font=("Arial", 15),command=self.DataSet_Size_Mode)
         DataSet_Size_Mode_Btn.pack()
         DataSet_Size_Mode_Btn.place(x=self.Third_Column_X+100,y=340)
 
@@ -776,7 +784,7 @@ class YOTO:
         self.InterferenceObjects_Type_Str_Var = tk.StringVar(self.Main,value="Auto")
         self.Auto_Interference_Hepler_State_Str_Var = tk.StringVar(self.Main,value="None")
         self.Currect_Object_Str_Var = tk.StringVar(self.Main,value="Next")
-        self.DataSet_Size_Mode_Str_Var = tk.StringVar(self.Main,value="No-Limit")
+        self.Objects_Zip_Mode_Str_Var = tk.StringVar(self.Main,value="Auto")
         self.OPTION_LIST["object-accuracy"].trace("w",self.OnInputChange)
         self.OPTION_LIST["position-accuracy"].trace("w",self.OnInputChange)
         self.OPTION_LIST["light-accuracy"].trace("w",self.OnInputChange)
@@ -792,3 +800,27 @@ class YOTO:
         self.Main.mainloop()
     
 yoto = YOTO()
+
+
+
+
+
+# def Add_AI_Interference_Object(self):
+    #     Window = tk.Toplevel(self.Main)
+    #     Window.geometry("800x500")
+    #     Window.title("AI Interference Object")
+
+    #     AI_Description_Input = tk.Text(Window,width=800,height=10,font=("Arial", 18))
+    #     AI_Description_Input.pack()
+
+    #     AI_Generate_Btn = tk.Button(Window,text="Generate",width=20,font=("Arial", 20))
+    #     AI_Generate_Btn.pack()
+
+
+# self.AI_InterferenceObject_Text = tk.Label(self.Main,text="AI Objects",font=("Arial", 15))
+# self.AI_InterferenceObject_Text.pack()
+# self.AI_InterferenceObject_Text.place(x=self.Second_Column_X+185,y=210)
+
+# self.AI_InterferenceObject_Btn = tk.Button(self.Main,text="+",width=8,font=("Arial", 15) ,command=self.Add_AI_Interference_Object)
+# self.AI_InterferenceObject_Btn.pack()
+# self.AI_InterferenceObject_Btn.place(x=self.Second_Column_X+195,y=240)
