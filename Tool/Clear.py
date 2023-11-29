@@ -1,7 +1,7 @@
 import shutil
 import os
 
-Target_ObjectImage_Path = "ObjectImages/Target_Objects"
+Target_ObjectImage_Path = "ObjectImages/Target_Classes"
 Interference_ObjectImage_Path = "ObjectImages/Interference_Objects"
 PROJECT_PATH = os.path.dirname(os.path.abspath(os.getcwd()))+"/YOTO"
 
@@ -12,9 +12,9 @@ def FinalDelete():
         None
 
     try:
-        TargetVideoList = os.listdir(f"{PROJECT_PATH}/Input/Target_Objects_Videos")
+        TargetVideoList = os.listdir(f"{PROJECT_PATH}/Input/Target_Classes_Videos")
         for video in TargetVideoList:
-            os.remove(f"{PROJECT_PATH}/Input/Target_Objects_Videos/{video}")
+            shutil.rmtree(f"{PROJECT_PATH}/Input/Target_Classes_Videos/{video}")
     except:
         None
 
@@ -26,9 +26,9 @@ def FinalDelete():
         None
 
     try:
-        TargetInputImagesList = os.listdir(f"{PROJECT_PATH}/Input/Target_Objects_Images")
+        TargetInputImagesList = os.listdir(f"{PROJECT_PATH}/Input/Target_Classes_Images")
         for image in TargetInputImagesList:
-            shutil.rmtree(f"{PROJECT_PATH}/Input/Target_Objects_Images/{image}")
+            shutil.rmtree(f"{PROJECT_PATH}/Input/Target_Classes_Images/{image}")
     except:
         None
     
